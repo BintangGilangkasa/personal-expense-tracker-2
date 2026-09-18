@@ -10,6 +10,7 @@ import Transactions from "./pages/Transactions";
 import TransactionAdd from "./pages/AddTransaction.jsx";
 import EditTransaction from "./pages/EditTransaction.jsx";
 import TransactionDetail from "./pages/TransactionDetailPage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
 import { addTransaction } from "./features/transactions/transactions.js";
 
 import "./index.css"
@@ -91,6 +92,13 @@ function App() {
                     <ProtectedRoute isAuthenticated={isLoggedIn}>
                         <TransactionDetail />
                     </ProtectedRoute>
+                }
+            />
+
+            <Route 
+                path="*"
+                element={
+                    <NotFoundPage />
                 }
             />
 

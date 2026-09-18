@@ -134,7 +134,7 @@ function TransactionFilter({
                     <button
                         type="button"
                         onClick={onClear}
-                        className="text-xs font-medium text-gray-500 transition hover:text-red-600"
+                        className="cursor-pointer text-xs font-medium text-gray-500 transition hover:text-red-600"
                     >
                         Hapus Filter
                     </button>

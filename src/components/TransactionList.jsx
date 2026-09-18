@@ -67,8 +67,8 @@ function TransactionList({ items = [] }) {
               items.map((item) => (
                 <tr
                   key={item.id}
-                  onClick={() => navigate(`/transactions/${items.id}`)}
-                  className="cursor-pointer transition hover:bg-gray-50"
+                  onClick={() => navigate(`/transactions/${item.id}`)}
+                  className="cursor-pointer transition hover:bg-gray-100"
                 >
 
                   <td className="px-5 py-4 text-sm text-gray-400">
@@ -126,6 +126,6 @@ function TransactionList({ items = [] }) {
       </div>
     </div>
   );
-}
+};
 
 export default TransactionList;

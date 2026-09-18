@@ -107,7 +107,6 @@ function LoginPage() {
                                 name="username"
                                 value={user.username}
                                 onChange={handleChange}
-                                placeholder="Masukkan username"
                                 autoComplete="username"
                                 className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
@@ -128,7 +127,6 @@ function LoginPage() {
                                 name="password"
                                 value={user.password}
                                 onChange={handleChange}
-                                placeholder="Masukkan password"
                                 autoComplete="current-password"
                                 className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />

@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { addTransaction } from "../features/transactions/transactions";
+import { addTransaction, updateTransaction } from "../features/transactions/transactions";
 
-function TransactionForm() {
+function TransactionForm({
+    editingTransaction,
+    onUpdateTransaction
+}) {
     const [form, setForm] = useState({
         title: "",
         type: "",
@@ -17,6 +20,19 @@ function TransactionForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (editingTransaction) {
+            setForm ({
+                title: editingTransaction.title || "",
+                type: editingTransaction.type || "",
+                amount: editingTransaction.amount || "",
+                category: editingTransaction.category || "",
+                date: editingTransaction.date || "",
+                note: editingTransaction.note || ""
+            });
+        }
+    }, [editingTransaction]);
+
     const handleChange = (event) => {
         const { name, value } = event.target;
 
@@ -28,6 +44,22 @@ function TransactionForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        if (editingTransaction) {
+            const updatedTransaction = {
+                id: editingTransaction.id,
+                title: form.title,
+                amount: Number(form.amount),
+                type: form.type,
+                category: form.category,
+                date: form.date,
+                note: form.note
+            };
+
+            onUpdateTransaction(updatedTransaction);
+
+            return;
+        }
 
         const newTransaction = {
             id: Math.floor(Math.random() * 1000000),
@@ -171,7 +203,10 @@ function TransactionForm() {
             </div>
 
             <button type="submit">
-                Simpan
+                {editingTransaction
+                    ? "Simpan Perubahan"
+                    : "Simpan Transaksi"
+                }
             </button>
 
         </form>

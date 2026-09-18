@@ -1,9 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const loadTransactions = () => {
+  try {
+    const saveTransactions = localStorage.getItem("transactions");
+
+    if (!saveTransactions) {
+      return[];
+    }
+
+    return JSON.parse(saveTransactions)
+  }
+
+    catch (error) {
+     console.error(
+      "Gagal membaca transaksi dari localstorage",
+      error
+    )
+
+     return [];
+  };
+};
+
+
 const transactionSlice = createSlice({
   name: 'transactions',
   initialState: {
-    items: [],
+    items: loadTransactions(),
   },
   reducers: {
     addTransaction: (state, action) => {
@@ -19,8 +41,8 @@ const transactionSlice = createSlice({
   },
 });
 
-// 1. Export action creator (named export)
+// Export action creator (named export)
 export const { addTransaction, updateTransaction, deleteTransaction } = transactionSlice.actions;
 
-// 2. Export reducer (DEFAULT EXPORT - Ini yang hilang di berkasmu)
+// Export reducer (DEFAULT EXPORT - Ini yang hilang di berkasmu)
 export default transactionSlice.reducer;

@@ -2,11 +2,76 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 
-import { formatRupiah } from '../utils/formatRupiah';
 import TransactionFilter from '../components/TransactionFilter'
+import TransactionList from '../components/TransactionList'
 
 const Transactions = () => {
   const { items } = useSelector((state) => state.transactions);
+
+  const [search, setSearch] = useState("");
+  const [filterType, setFilterType] = useState("");
+  const [filterCategory, setFilterCategory] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [sortAmount, setSortAmount] = useState("");
+
+  const categories = [
+    ...new Set(
+      items.map((item) => item.category)
+        .filter(Boolean)
+    )
+  ];
+
+  let filteredItems = items.filter((item) => {
+    const matchSearch = item.title
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchType =
+      filterType === "" ||
+      item.type === filterType;
+
+    const matchCategory =
+      filterCategory === "" ||
+      item.category === filterCategory;
+
+    const matchStartDate =
+      startDate === "" ||
+      item.date >= startDate;
+
+    const matchEndDate =
+      endDate === "" ||
+      item.date <= endDate;
+
+    return (
+      matchSearch &&
+      matchType &&
+      matchCategory &&
+      matchStartDate &&
+      matchEndDate
+    );
+  });
+
+  if (sortAmount === "asc") {
+    filteredItems = [...filteredItems].sort(
+      (a, b) => Number(a.amount) - Number(b.amount)
+    );
+  }
+
+  if (sortAmount === "desc") {
+    filteredItems = [...filteredItems].sort(
+      (a, b) => Number(b.amount) - Number(a.amount)
+    );
+  }
+
+  const handleClearFilter = () => {
+    setSearch("");
+    setFilterType("");
+    setFilterCategory("");
+    setStartDate("");
+    setEndDate("");
+    setSortAmount("");
+  };
 
   return (
     <div className="mx-auto max-w-7xl space-y-6 px-4 py-8 sm:px-6 lg-px-8">
@@ -16,9 +81,9 @@ const Transactions = () => {
           to="/dashboard"
           className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-gray-600 transition hover:text-blue-600"
         >
-           ← Kembali ke Dashboard
+          ← Kembali ke Dashboard
         </Link>
-        
+
         {/* Tombol ini akan mengarahkan ke /transactions/add dan memicu modal muncul */}
         <Link
           to="/transactions/add"
@@ -28,32 +93,32 @@ const Transactions = () => {
         </Link>
       </div>
 
-      {/* Tabel Transaksi */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 mx-auto max-w-7xl space-y-6 px-4 py-8 sm:px-6 lg-px-8">
-        <table className="w-full text-left">
-          <thead>
-            <tr className="border-b text-xs text-gray-500 uppercase">
-              <th className="py-2">Tanggal</th>
-              <th className="py-2">Judul</th>
-              <th className="py-2">Tipe</th>
-              <th className="py-2 text-right">Nominal</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y text-sm">
-            {items.map((item) => (
-              <tr key={item.id} className="hover:bg-gray-50">
-                <td className="py-3">{item.date}</td>
-                <td className="py-3 font-medium">{item.title}</td>
-                <td className="py-3">{item.type}</td>
-                <td className="py-3 text-right">{formatRupiah(item.amount)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <TransactionFilter
+        search={search}
+        setSearch={setSearch}
 
-      {/* Outlet: Tempat Modal AddTransactionModal dirender melayang di atas tabel */}
-      <Outlet />
+        filterType={filterType}
+        setFilterType={setFilterType}
+
+        filterCategory={filterCategory}
+        setFilterCategory={setFilterCategory}
+
+        startDate={startDate}
+        setStartDate={setStartDate}
+
+        endDate={endDate}
+        setEndDate={setEndDate}
+
+        sortAmount={sortAmount}
+        setSortAmount={setSortAmount}
+
+        categories={categories}
+        onClear={handleClearFilter}
+      />
+
+      <TransactionList
+        items={filteredItems}
+      />
     </div>
   );
 };

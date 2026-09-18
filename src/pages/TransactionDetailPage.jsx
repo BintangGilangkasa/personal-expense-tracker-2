@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+
 import { formatRupiah } from "../utils/formatRupiah";
+import { deleteTransaction } from "../features/transactions/transactions";
 
 import Header from "../components/Header";
-
-import { deleteTransaction } from "../features/transactions/transactions";
 
 function TransactionDetail() {
     const { id } = useParams();
@@ -23,7 +23,7 @@ function TransactionDetail() {
     );
 
     const handleBack = () => {
-        navigate("/transactions");
+        navigate("/dashboard");
     };
 
     const handleEdit = () => {
@@ -37,7 +37,7 @@ function TransactionDetail() {
             "Apakah anda yakit ingin menghapus transaksi ini?"
         );
 
-        if(confirm) {
+        if(!isConfirm) {
             return;
         }
 
@@ -69,7 +69,7 @@ function TransactionDetail() {
                                 onClick={handleBack}
                                 className="mt-6 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
                             >
-                                Kembali ke Daftar Transaksi
+                                Kembali ke Dashboard
                             </button>
                         </div>
 

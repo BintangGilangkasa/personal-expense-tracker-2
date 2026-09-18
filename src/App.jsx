@@ -8,6 +8,7 @@ import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Transactions from "./pages/Transactions";
 import TransactionAdd from "./pages/AddTransaction.jsx";
+import EditTransaction from "./pages/EditTransaction.jsx";
 import TransactionDetail from "./pages/TransactionDetailPage.jsx";
 import { addTransaction } from "./features/transactions/transactions.js";
 
@@ -71,6 +72,15 @@ function App() {
                 element={
                     <ProtectedRoute isAuthenticated={isLoggedIn}>
                         <TransactionAdd />
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route 
+                path="/transactions/:id/edit"
+                element={
+                    <ProtectedRoute isAuthenticated={isLoggedIn}> 
+                        <EditTransaction />
                     </ProtectedRoute>
                 }
             />

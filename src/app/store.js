@@ -10,4 +10,13 @@ const store = configureStore({
     }
 });
 
+store.subscribe(() => {
+    const state = store.getState();
+
+    localStorage.setItem(
+        "transactions",
+        JSON.stringify(state.transactions.items)
+    );
+});
+
 export default store;

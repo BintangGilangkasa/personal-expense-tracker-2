@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Gaji",
+    "type": "INCOME"
+  },
+  {
+    "id": 2,
+    "name": "Bonus",
+    "type": "INCOME"
+  },
+  {
+    "id": 3,
+    "name": "Makanan",
+    "type": "EXPENSE"
+  },
+  {
+    "id": 4,
+    "name": "Transportasi",
+    "type": "EXPENSE"
+  },
+  {
+    "id": 5,
+    "name": "Tagihan",
+    "type": "EXPENSE"
+  }
+]

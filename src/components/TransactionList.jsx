@@ -70,9 +70,8 @@ function TransactionList({ items = [] }) {
                   onClick={() => navigate(`/transactions/${item.id}`)}
                   className="cursor-pointer transition hover:bg-gray-100"
                 >
-
-                  <td className="px-5 py-4 text-sm text-gray-400">
-                    #{item.id}
+                  <td className="px-5 py-4 text-sm text-gray-500">
+                    {item.id}
                   </td>
 
                   <td className="px-5 py-4 text-sm text-gray-600">

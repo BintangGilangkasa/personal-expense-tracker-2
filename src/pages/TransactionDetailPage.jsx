@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { formatRupiah } from "../utils/formatRupiah";
 import { deleteTransaction } from "../features/transactions/transactions";
 
-import Header from "../components/Header";
+import Header from "../components/Header"
 
 function TransactionDetail() {
     const { id } = useParams();
@@ -29,12 +29,13 @@ function TransactionDetail() {
     const handleEdit = () => {
 
         navigate(`/transactions/${id}/edit`);
+
     };
 
     const handleDelete = () => {
 
         const isConfirm =window.confirm(
-            "Apakah anda yakit ingin menghapus transaksi ini?"
+            "Apakah anda yakin ingin menghapus transaksi ini?"
         );
 
         if(!isConfirm) {
@@ -42,6 +43,8 @@ function TransactionDetail() {
         }
 
         dispatch(deleteTransaction(transaction.id))
+
+        alert("Transaksi berhasil dihapus")
 
         navigate("/transactions");
     }

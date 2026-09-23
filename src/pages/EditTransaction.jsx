@@ -22,6 +22,8 @@ function EditTransaction() {
     const handleUpdateTransaction = (updatedTransaction) => {
         dispatch(updateTransaction(updatedTransaction));
 
+        alert("Transaksi berhasil diperbarui")
+
         navigate("/transactions");
     };
 

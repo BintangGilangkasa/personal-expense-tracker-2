@@ -107,17 +107,19 @@ function Dashboard({ onLogout }) {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-gray-200 text-gray-500 text-xs font-semibold uppercase tracking-wider">
+                  <th className="pb-3 px-2">ID</th>
                   <th className="pb-3 px-2">Tanggal</th>
                   <th className="pb-3 px-2">Judul</th>
                   <th className="pb-3 px-2">Kategori</th>
                   <th className="pb-3 px-2">Tipe</th>
                   <th className="pb-3 px-2 text-right">Nominal</th>
-                  <th className="pb-3 px-2 text-center">Aksi</th>
+                  <th className="pb-3 px-2 text-center"></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100 text-sm">
                 {recentTransactions.map((item) => (
                   <tr key={item.id} className="hover:bg-gray-50 transition">
+                    <td className="py-3 px-2 text-gray-600">{item.id}</td>
                     <td className="py-3 px-2 text-gray-600">{item.date}</td>
                     <td className="py-3 px-2 font-medium text-gray-900">{item.title}</td>
                     <td className="py-3 px-2">

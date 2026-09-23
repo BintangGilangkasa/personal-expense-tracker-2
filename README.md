@@ -182,4 +182,4 @@ Dengan cara tersebut, Redux digunakan sebagai state utama aplikasi saat berjalan
 ![Form](/src/assets/image/form.png)
 ![Daftar_Transaksi](/src/assets/image/daftar_transaksi.png)
 ![Detail_Transaksi](/src/assets/image/detail.png)
-
+![NotFound404](/src/assets/image/notFound.png)

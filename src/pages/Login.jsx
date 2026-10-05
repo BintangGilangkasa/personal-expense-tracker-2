@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import {
-    login,
-    clearError
-} from "../features/auth/authSlice";
+import { login, clearError } from "../features/auth/authSlice";
 
 function LoginPage() {
     const [user, setUser] = useState({

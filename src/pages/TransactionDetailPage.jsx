@@ -34,7 +34,7 @@ function TransactionDetail() {
 
     const handleDelete = () => {
 
-        const isConfirm =window.confirm(
+        const isConfirm = window.confirm(
             "Apakah anda yakin ingin menghapus transaksi ini?"
         );
 

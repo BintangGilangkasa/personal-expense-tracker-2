@@ -21,6 +21,11 @@
   },
   {
     "id": 5,
+    "name": "Barang",
+    "type": "INCOME"
+  },
+  {
+    "id": 6,
     "name": "Tagihan",
     "type": "EXPENSE"
   }

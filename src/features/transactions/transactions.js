@@ -21,7 +21,6 @@ const loadTransactions = () => {
   };
 };
 
-
 const transactionSlice = createSlice({
   name: 'transactions',
   initialState: {

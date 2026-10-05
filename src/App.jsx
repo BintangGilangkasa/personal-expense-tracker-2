@@ -11,7 +11,6 @@ import TransactionAdd from "./pages/AddTransaction.jsx";
 import EditTransaction from "./pages/EditTransaction.jsx";
 import TransactionDetail from "./pages/TransactionDetailPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
-import { addTransaction } from "./features/transactions/transactions.js";
 
 import "./index.css"
 
